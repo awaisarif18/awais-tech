@@ -1,12 +1,14 @@
 import Image from "next/image";
+import { ArrowDown } from "lucide-react";
 import { CardContainer } from "./components/aceternity/3d-card";
 import { Cover } from "./components/aceternity/cover";
 import { Timeline } from "./components/aceternity/timeline";
 import { ExperienceTimeline } from "./components/experience-timeline";
 import { FAQ } from "./components/faq";
+import { HeroPhoto } from "./components/hero-photo";
 import { ProjectCover, ProjectCoverLink } from "./components/project-cover";
 import { BookingLink, Footer } from "./components/site";
-import { FlippingStage, Typewriter } from "./components/text-motion";
+import { FlippingStage } from "./components/text-motion";
 import { projects } from "./content/projects";
 
 export default function Home() {
@@ -14,21 +16,18 @@ export default function Home() {
     <>
       <main id="main">
         <header className="hero">
-          <CardContainer className="hero-photo">
-            <Image
-              src="/images/departure-horizon.webp"
-              alt="Awais faces a mountain ridge at sunset"
-              fill
-              sizes="100vw"
-              preload
-            />
-          </CardContainer>
-          <h1 className="hero-name">
-            <span>Awais</span>{" "}<span>Arif</span>
-          </h1>
+          <div className="hero-stage">
+            <HeroPhoto />
+            <h1 className="hero-name">
+              <span>Awais</span>{" "}<span>Arif</span>
+            </h1>
+          </div>
           <div className="hero-intro">
             <p className="hero-role">Forward Deployed AI Engineer</p>
-            <Typewriter text="I turn manual research and review into software your team can check." />
+            <p className="hero-description">I turn manual research and review into software your team can check.</p>
+            <a className="hero-projects-link" href="#projects">
+              View Projects <ArrowDown size={17} aria-hidden="true" />
+            </a>
           </div>
         </header>
 
@@ -64,7 +63,7 @@ export default function Home() {
                 src="/images/field-portrait.webp"
                 alt="Awais Arif in a dark jacket and cap with mountains behind him"
                 fill
-                sizes="(min-width: 860px) 42vw, 100vw"
+                sizes="(min-width: 861px) 39vw, calc(100vw - max(48px, 9.72vw))"
               />
             </CardContainer>
           </div>

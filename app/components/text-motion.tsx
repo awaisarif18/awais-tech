@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion, stagger, useAnimate, useInView, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion, useInView, useReducedMotion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 
 const stages = ["Prototype", "Pilot", "Release"];
@@ -42,41 +42,5 @@ export function FlippingStage() {
         </motion.span>
       </AnimatePresence>
     </span>
-  );
-}
-
-// Adapted from https://ui.aceternity.com/registry/typewriter-effect.json.
-export function Typewriter({ text }: { text: string }) {
-  const [scope, animate] = useAnimate();
-  const visible = useInView(scope, { once: true });
-  const reduced = useReducedMotion();
-  const words = Array.from(text.matchAll(/\S+/g));
-
-  useEffect(() => {
-    if (!visible || reduced) return;
-    const playback = animate(".typewriter-letter", { opacity: [0, 1] }, {
-      duration: 0.055,
-      delay: stagger(0.024),
-      ease: "easeInOut",
-    });
-
-    return () => playback.stop();
-  }, [animate, visible, reduced]);
-
-  return (
-    <p className="typewriter">
-      <span className="visually-hidden">{text}</span>
-      <span ref={scope} aria-hidden="true">
-        {words.map(({ 0: word, index: offset }) => (
-          <span key={offset}>
-            <span className="typewriter-word">
-              {Array.from(word, (char, letter) => (
-                <span key={letter} className="typewriter-letter">{char}</span>
-              ))}
-            </span>{" "}
-          </span>
-        ))}
-      </span>
-    </p>
   );
 }

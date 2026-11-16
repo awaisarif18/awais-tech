@@ -55,7 +55,7 @@ export default async function CaseStudy({ params }: CasePageProps) {
             )}
           </header>
           <figure className="case-figure">
-            <ProjectCover kind={project.kind} />
+            <ProjectCover kind={project.kind} placement="caseStudy" />
             <figcaption>{project.caption}</figcaption>
           </figure>
           <ProjectStack kind={project.kind} />

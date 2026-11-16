@@ -38,14 +38,29 @@ const covers = {
   },
 };
 
-export function ProjectCover({ kind }: { kind: ProjectKind }) {
+const coverSizes = {
+  gallery: {
+    survey: "(max-width: 420px) calc(74vw - 36px), (max-width: 800px) 60vw, 36vw",
+    build: "(max-width: 420px) calc(74vw - 36px), (max-width: 800px) 60vw, 36vw",
+    travel: "(max-width: 800px) 52vw, 40vw",
+    trade: "(max-width: 420px) calc(74vw - 36px), (max-width: 800px) 60vw, 40vw",
+  },
+  caseStudy: {
+    survey: "(max-width: 420px) calc(74vw - 36px), (min-width: 1140px) 684px, 61vw",
+    build: "(max-width: 420px) calc(74vw - 36px), (min-width: 1140px) 684px, 61vw",
+    travel: "(min-width: 1140px) 530px, calc(52vw - 25px)",
+    trade: "(max-width: 420px) calc(74vw - 36px), (min-width: 1140px) 684px, 61vw",
+  },
+};
+
+export function ProjectCover({ kind, placement = "gallery" }: { kind: ProjectKind; placement?: "gallery" | "caseStudy" }) {
   const { src, alt, kicker, statement, result, note } = covers[kind];
   const travel = kind === "travel";
 
   return (
     <div className={`cover-art cover-art--${kind}${travel ? "" : " cover-art--illustrated"}`}>
       <CardContainer className="cover-media">
-        <Image src={src} alt={alt} fill sizes={travel ? "(min-width: 800px) 40vw, 52vw" : "(max-width: 800px) 60vw, 42vw"} />
+        <Image src={src} alt={alt} fill sizes={coverSizes[placement][kind]} />
       </CardContainer>
       <div className="cover-copy">
         <p className="cover-kicker">{kicker}</p>

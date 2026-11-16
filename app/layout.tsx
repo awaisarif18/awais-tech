@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Navigation } from "./components/navigation";
-import { BackgroundCubesGrid } from "./components/aceternity/background-cubes-grid";
+import { DeferredCubes } from "./components/deferred-cubes";
 import "@fontsource-variable/zalando-sans-expanded/wght.css";
 import "@fontsource-variable/source-sans-3/wght.css";
 import "./globals.css";
@@ -22,7 +22,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en" data-scroll-behavior="smooth">
       <body>
         <a className="skip-link" href="#main">Skip to Content</a>
-        <BackgroundCubesGrid className="site-cubes" cellSize={105} topColor="#14212b" leftColor="#293a46" rightColor="#1c2b36" gap={.052} idleRipples={false} glowColor="#e59268" glow={.7} />
+        <div className="site-cubes" aria-hidden="true"><DeferredCubes /></div>
         <Navigation />
         {children}
       </body>

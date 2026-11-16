@@ -17,12 +17,6 @@ export const socialLinks = [
 
 export const experience = [
   {
-    date: "July 2026",
-    company: "FlyRank AI",
-    role: "Machine Learning Intern",
-    contribution: "I used anonymized search data to explore how ranking changes affect what people find.",
-  },
-  {
     date: "January 2026",
     company: "CodeBricks Global",
     role: "AI/ML Engineer",
