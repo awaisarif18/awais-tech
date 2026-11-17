@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { ArrowDown } from "lucide-react";
 import { CardContainer } from "./components/aceternity/3d-card";
@@ -6,14 +7,56 @@ import { Timeline } from "./components/aceternity/timeline";
 import { ExperienceTimeline } from "./components/experience-timeline";
 import { FAQ } from "./components/faq";
 import { HeroPhoto } from "./components/hero-photo";
+import { JsonLd } from "./components/json-ld";
 import { ProjectCover, ProjectCoverLink } from "./components/project-cover";
 import { BookingLink, Footer } from "./components/site";
 import { FlippingStage } from "./components/text-motion";
+import { socialLinks } from "./content/profile";
 import { projects } from "./content/projects";
+import { homeDescription, homeImage, homeTitle, personId, role, services, siteName, siteUrl } from "./content/seo";
+
+export const metadata: Metadata = {
+  alternates: { canonical: `${siteUrl}/` },
+  openGraph: {
+    type: "website",
+    url: `${siteUrl}/`,
+    siteName,
+    title: homeTitle,
+    description: homeDescription,
+    images: [{ url: homeImage, alt: "Awais Arif looking out over mountains at sunset" }],
+  },
+  twitter: { card: "summary_large_image" },
+};
+
+const homeSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "WebSite", "@id": `${siteUrl}/#website`, url: `${siteUrl}/`, name: siteName, publisher: { "@id": personId } },
+    {
+      "@type": "Person",
+      "@id": personId,
+      name: siteName,
+      jobTitle: role,
+      url: `${siteUrl}/`,
+      image: `${siteUrl}/images/field-portrait.webp`,
+      description: homeDescription,
+      sameAs: socialLinks.filter(({ href }) => href.startsWith("https://")).map(({ href }) => href),
+    },
+    ...services.map(({ id, name, description }) => ({
+      "@type": "Service",
+      "@id": `${siteUrl}/#${id}`,
+      url: `${siteUrl}/#${id}`,
+      name,
+      description,
+      provider: { "@id": personId },
+    })),
+  ],
+};
 
 export default function Home() {
   return (
     <>
+      <JsonLd data={homeSchema} />
       <main id="main">
         <header className="hero">
           <div className="hero-stage">
@@ -23,8 +66,8 @@ export default function Home() {
             </h1>
           </div>
           <div className="hero-intro">
-            <p className="hero-role">Forward Deployed AI Engineer</p>
-            <p className="hero-description">I turn manual research and review into software your team can check.</p>
+            <p className="hero-role">{role}</p>
+            <p className="hero-description">I build AI tools that review documents, answer questions from your knowledge base, and analyze open-ended feedback.</p>
             <a className="hero-projects-link" href="#projects">
               View Projects <ArrowDown size={17} aria-hidden="true" />
             </a>
@@ -51,6 +94,18 @@ export default function Home() {
               </div>
             </article>
           ))}
+        </section>
+
+        <section className="section-shell services" id="services" aria-labelledby="services-title">
+          <h2 id="services-title" className="section-title">AI Engineering Services</h2>
+          <div className="services-list">
+            {services.map(({ id, name, description }) => (
+              <div key={id} id={id}>
+                <h3>{name}</h3>
+                <p>{description}</p>
+              </div>
+            ))}
+          </div>
         </section>
 
         <section className="section-shell approach" aria-labelledby="approach-title">

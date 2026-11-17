@@ -8,10 +8,12 @@ import { CaseArrival } from "../../components/case-arrival";
 import { LinkPreview } from "../../components/aceternity/link-preview";
 import { NoiseBackground } from "../../components/aceternity/noise-background";
 import { Terminal } from "../../components/aceternity/terminal";
-import { ProjectCover } from "../../components/project-cover";
+import { JsonLd } from "../../components/json-ld";
+import { covers, ProjectCover } from "../../components/project-cover";
 import { ProjectStack } from "../../components/project-stack";
 import { BookingLink, Footer } from "../../components/site";
 import { projects, type CaseText, type ProjectKind } from "../../content/projects";
+import { personId, siteName, siteUrl } from "../../content/seo";
 
 type CasePageProps = { params: Promise<{ slug: string }> };
 
@@ -22,16 +24,40 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: CasePageProps): Promise<Metadata> {
   const { slug } = await params;
   const project = projects.find((entry) => entry.slug === slug);
-  return project ? { title: project.title, description: project.premise } : {};
+  if (!project) return {};
+
+  const { title, description } = project.search;
+  const url = `/projects/${slug}`;
+  const { src, alt } = covers[project.kind];
+
+  return {
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: { type: "article", title, description, url, siteName, images: [{ url: src, alt: alt || project.title }] },
+    twitter: { card: "summary_large_image" },
+  };
 }
 
 export default async function CaseStudy({ params }: CasePageProps) {
   const { slug } = await params;
   const project = projects.find((entry) => entry.slug === slug);
   if (!project) notFound();
+  const url = `${siteUrl}/projects/${project.slug}`;
 
   return (
     <>
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "@id": `${url}#case-study`,
+        url,
+        mainEntityOfPage: url,
+        headline: project.title,
+        description: project.search.description,
+        image: `${siteUrl}${covers[project.kind].src}`,
+        author: { "@type": "Person", "@id": personId, name: siteName, url: `${siteUrl}/` },
+      }} />
       <main className="case-shell" id="main">
         <div className="case-topbar">
           <Link href="/#projects"><ArrowLeft size={17} aria-hidden="true" /> All Projects</Link>

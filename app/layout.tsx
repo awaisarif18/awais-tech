@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Navigation } from "./components/navigation";
 import { DeferredCubes } from "./components/deferred-cubes";
+import { homeDescription, homeTitle, siteName, siteUrl } from "./content/seo";
 import "@fontsource-variable/zalando-sans-expanded/wght.css";
 import "@fontsource-variable/source-sans-3/wght.css";
 import "./globals.css";
@@ -9,12 +10,12 @@ import "./projects.css";
 import "./aceternity.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
-    default: "Awais Arif · Forward Deployed AI Engineer",
-    template: "%s · Awais Arif",
+    default: homeTitle,
+    template: `%s | ${siteName}`,
   },
-  description:
-    "I turn manual research and review into software your team can check. Explore my work or book a discovery call.",
+  description: homeDescription,
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

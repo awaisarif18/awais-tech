@@ -3,7 +3,7 @@ import type { ProjectKind } from "../content/projects";
 import { CardContainer } from "./aceternity/3d-card";
 export { ProjectCoverLink } from "./project-cover-link";
 
-const covers = {
+export const covers = {
   survey: {
     src: "/images/survey-theme-analysis-cover.webp",
     alt: "Colour-coded paper slips branch into separate piles marked with checks and crosses.",

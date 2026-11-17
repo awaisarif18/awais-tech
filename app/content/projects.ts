@@ -15,6 +15,7 @@ type Project = {
   proof: string;
   context: string;
   premise: string;
+  search: { title: string; description: string };
   caption: string;
   status?: string;
   actions: { label: string; href: string }[];
@@ -32,6 +33,10 @@ export const projects: Project[] = [
     "caption": "The flavour clause gets a positive tag. The packaging clause gets a negative one.",
     "title": "Survey Theme Analysis",
     "premise": "Turn hundreds of open-ended responses into themes you can check against what people actually said.",
+    "search": {
+      "title": "Survey Theme and Sentiment Analysis",
+      "description": "A Python and Streamlit tool for open-ended survey analysis. See how it groups themes, scores sentiment by clause, and lets analysts correct tags."
+    },
     "actions": [
       {
         "label": "Open Live App",
@@ -114,6 +119,10 @@ export const projects: Project[] = [
     "caption": "An example answer with its source pages from the travel guide.",
     "title": "Pakistan North Travel AI",
     "premise": "Ask about northern Pakistan and see the pages behind each answer.",
+    "search": {
+      "title": "RAG Chatbot with PDF Citations",
+      "description": "See how Pakistan North Travel AI answers questions from a 92-page travel guide and cites the PDF pages behind its answers. Try the live RAG chatbot."
+    },
     "actions": [
       {
         "label": "Open Live App",
@@ -206,6 +215,10 @@ export const projects: Project[] = [
     "caption": "A Telegram brief starts a checkpointed OpenCode build on a remote VM. The bot sends back a report for review.",
     "title": "Overnight AI Build Lab",
     "premise": "I close my laptop. The build keeps running.",
+    "search": {
+      "title": "Overnight AI Build Lab and Invoice Review",
+      "description": "An AI development workflow that runs on a remote VM with checkpoints. See how it produced a tool that compares invoices, purchase orders, and contracts."
+    },
     "status": "Private build environment.",
     "actions": [],
     "sections": [
@@ -284,6 +297,10 @@ export const projects: Project[] = [
     "caption": "The Socket.IO gateway routes the MT5 provider’s signal. Each copier applies its own risk limits and position sizing.",
     "title": "TradeSync Pro",
     "premise": "Copy a trade across MetaTrader 5 accounts while respecting each account’s own risk settings.",
+    "search": {
+      "title": "TradeSync Pro MT5 Copy Trading System",
+      "description": "A MetaTrader 5 copy trading case study covering real-time signal delivery, position sizing for each account, and recovery after reconnecting."
+    },
     "status": "Live deployment planned.",
     "actions": [
       {

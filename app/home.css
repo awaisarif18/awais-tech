@@ -133,6 +133,12 @@
 .entry-role { margin-block-start: .25rem; color: var(--teal); font-weight: 600; font-size: 1rem; }
 .entry-contribution { max-inline-size: 59ch; color: var(--muted); margin-block-start: .25rem; line-height: 1.4; }
 
+.services { display: grid; gap: clamp(1.5rem, 4vw, 4rem); padding-block: clamp(44px, 5.5vw, 86px); }
+.services-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); gap: clamp(1.25rem, 3vw, 3rem); }
+.services-list > div { border-block-start: 1px solid var(--rule); padding-block-start: 1rem; }
+.services-list h3 { font-size: clamp(1.2rem, 2vw, 1.7rem); font-weight: 650; line-height: 1.15; }
+.services-list p { max-inline-size: 50ch; margin-block-start: .55rem; color: var(--muted); }
+
 .approach {
   display: grid;
   grid-template-columns: minmax(0, .85fr) minmax(0, 1fr);

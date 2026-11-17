@@ -43,6 +43,9 @@ jobs:
             curl -fsS -o /dev/null "http://127.0.0.1:3210/projects/$path"
           done
           curl -fsS -o /dev/null -H 'Accept: image/webp' 'http://127.0.0.1:3210/_next/image?url=%2Fimages%2Fdeparture-horizon-mobile.webp&w=640&q=75'
+          for path in robots.txt sitemap.xml llms.txt; do
+            curl -fsS -o /dev/null "http://127.0.0.1:3210/$path"
+          done
           test "$(curl -fsS http://127.0.0.1:3210/release.txt)" = "$GITHUB_SHA"
           tar -C "$stage" --exclude='./.next/cache' -czf portfolio-arm64.tar.gz .
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
@@ -116,6 +119,9 @@ jobs:
                 curl -fsS --max-time 10 -o /dev/null "https://awaisarif.tech/projects/$path"
               done
               curl -fsS --max-time 10 -o /dev/null -H 'Accept: image/webp' 'https://awaisarif.tech/_next/image?url=%2Fimages%2Fdeparture-horizon-mobile.webp&w=640&q=75'
+              for path in robots.txt sitemap.xml llms.txt; do
+                curl -fsS --max-time 10 -o /dev/null "https://awaisarif.tech/$path"
+              done
               printf 'Verified commit `%s` at https://awaisarif.tech\n' "$live" >> "$GITHUB_STEP_SUMMARY"
               exit 0
             fi

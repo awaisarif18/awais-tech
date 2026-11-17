@@ -2,8 +2,16 @@ import { Plus } from "lucide-react";
 
 const questions = [
   {
-    question: "What kinds of projects do you take on?",
-    answer: "I build tools for teams that spend hours going through feedback, finding answers in documents, or checking records against each other. A good starting point is a job someone on your team already does and can show me.",
+    question: "What Does a Forward Deployed AI Engineer Do?",
+    answer: "I work directly with your team to understand a manual workflow, build the software around it, and test it on examples you already handle. I focus on document review, knowledge-base chatbots, and survey analysis.",
+  },
+  {
+    question: "Can You Build a Chatbot That Cites Our Documents?",
+    answer: "Yes. A retrieval-augmented generation (RAG) chatbot searches your PDFs or knowledge base before answering. I can show which passages support an answer and test what happens when the documents do not cover the question.",
+  },
+  {
+    question: "Can You Automate Open-Ended Survey Analysis?",
+    answer: "Yes. I can build a workflow that identifies themes, scores sentiment by theme, and lets an analyst check and correct the tags. In an internal evaluation of 500 open-ended responses, my survey pipeline reached 80% theme matching and 94% sentiment accuracy.",
   },
   {
     question: "What should I bring to the discovery call?",
