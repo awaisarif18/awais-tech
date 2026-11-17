@@ -16,7 +16,8 @@ fetch() {
     --location --retry 2 --connect-timeout 8 --max-time 90 --max-filesize 250000000 "$1" -o "$2"
 }
 
-fetch "$channel/latest/download/release.json" "$work/release.json"
+# The latest redirect can outlive a publish in an intermediary cache.
+fetch "$channel/latest/download/release.json?poll=$(date +%s)" "$work/release.json"
 commit=$(jq -er '.commit | select(test("^[0-9a-f]{40}$"))' "$work/release.json")
 current=$(readlink "$root/current" || true)
 target="releases/$commit"
