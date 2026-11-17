@@ -112,6 +112,10 @@ jobs:
             live=$(curl --silent --fail --max-time 5 https://awaisarif.tech/release.txt || true)
             if [[ "$live" == "$GITHUB_SHA" ]]; then
               curl -fsS --max-time 10 -o /dev/null https://awaisarif.tech/
+              for path in survey-theme-analysis pakistan-north-travel-ai overnight-ai-build-lab tradesync-pro; do
+                curl -fsS --max-time 10 -o /dev/null "https://awaisarif.tech/projects/$path"
+              done
+              curl -fsS --max-time 10 -o /dev/null -H 'Accept: image/webp' 'https://awaisarif.tech/_next/image?url=%2Fimages%2Fdeparture-horizon-mobile.webp&w=640&q=75'
               printf 'Verified commit `%s` at https://awaisarif.tech\n' "$live" >> "$GITHUB_STEP_SUMMARY"
               exit 0
             fi

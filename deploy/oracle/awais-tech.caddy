@@ -19,6 +19,9 @@ awaisarif.tech {
 		Permissions-Policy "camera=(), microphone=(), geolocation=()"
 		-Server
 	}
-	header /release.txt Cache-Control "no-store"
+	header /release.txt {
+		Cache-Control "no-store"
+		defer
+	}
 	reverse_proxy 127.0.0.1:3210
 }
