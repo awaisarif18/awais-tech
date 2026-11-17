@@ -1,0 +1,24 @@
+http://awaisarif.tech, http://www.awaisarif.tech {
+	bind 10.0.0.115
+	redir https://awaisarif.tech{uri} 308
+}
+
+www.awaisarif.tech {
+	bind 10.0.0.115
+	redir https://awaisarif.tech{uri} 308
+}
+
+awaisarif.tech {
+	bind 10.0.0.115
+	encode zstd gzip
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options nosniff
+		X-Frame-Options DENY
+		Referrer-Policy strict-origin-when-cross-origin
+		Permissions-Policy "camera=(), microphone=(), geolocation=()"
+		-Server
+	}
+	header /release.txt Cache-Control "no-store"
+	reverse_proxy 127.0.0.1:3210
+}

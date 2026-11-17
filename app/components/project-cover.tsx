@@ -56,11 +56,19 @@ const coverSizes = {
 export function ProjectCover({ kind, placement = "gallery" }: { kind: ProjectKind; placement?: "gallery" | "caseStudy" }) {
   const { src, alt, kicker, statement, result, note } = covers[kind];
   const travel = kind === "travel";
+  const isLeadImage = placement === "caseStudy";
 
   return (
     <div className={`cover-art cover-art--${kind}${travel ? "" : " cover-art--illustrated"}`}>
       <CardContainer className="cover-media">
-        <Image src={src} alt={alt} fill sizes={coverSizes[placement][kind]} />
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes={coverSizes[placement][kind]}
+          loading={isLeadImage ? "eager" : "lazy"}
+          fetchPriority={isLeadImage ? "high" : undefined}
+        />
       </CardContainer>
       <div className="cover-copy">
         <p className="cover-kicker">{kicker}</p>

@@ -1,0 +1,31 @@
+[Unit]
+Description=Awais Arif portfolio
+After=network.target
+ConditionPathExists=/srv/awais-tech/current/server.js
+
+[Service]
+User=awais-web
+Group=awais-web
+WorkingDirectory=/srv/awais-tech/current
+ExecStart=/opt/awais-tech-node/bin/node /srv/awais-tech/current/server.js
+Environment=HOSTNAME=127.0.0.1 PORT=3210 NODE_ENV=production NEXT_TELEMETRY_DISABLED=1
+Restart=on-failure
+RestartSec=2s
+CacheDirectory=awais-tech
+CacheDirectoryMode=0750
+NoNewPrivileges=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectSystem=strict
+ProtectHome=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+CapabilityBoundingSet=
+RestrictSUIDSGID=yes
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+MemoryHigh=512M
+MemoryMax=768M
+
+[Install]
+WantedBy=multi-user.target

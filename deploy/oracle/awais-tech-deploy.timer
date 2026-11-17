@@ -1,0 +1,11 @@
+[Unit]
+Description=Check GitHub for the latest portfolio release
+
+[Timer]
+OnBootSec=25s
+OnUnitInactiveSec=30s
+AccuracySec=5s
+Unit=awais-tech-deploy.service
+
+[Install]
+WantedBy=timers.target

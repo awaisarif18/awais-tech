@@ -1,0 +1,13 @@
+[Unit]
+Description=Verify and activate the latest signed portfolio release
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=awais-deploy
+Group=awais-deploy
+ExecStart=/usr/local/libexec/awais-tech-pull-release
+TimeoutStartSec=6min
+PrivateTmp=yes
+ProtectHome=yes
