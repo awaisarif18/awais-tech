@@ -5,6 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CaseArrival } from "../../components/case-arrival";
+import { ClinicDemo } from "../../components/clinic-demo";
 import { LinkPreview } from "../../components/aceternity/link-preview";
 import { NoiseBackground } from "../../components/aceternity/noise-background";
 import { Terminal } from "../../components/aceternity/terminal";
@@ -67,6 +68,12 @@ export default async function CaseStudy({ params }: CasePageProps) {
             <h1>{project.title}</h1>
             <p>{project.premise}</p>
             {project.status && <p className="case-status">{project.status}</p>}
+            {project.kind === "clinic" && (
+              <div className="case-actions">
+                <a href="#clinic-demo" className="action action--primary">Run the walkthrough</a>
+                <Link href="/zapier-automation" className="action">Explore Zapier use cases</Link>
+              </div>
+            )}
             {project.actions.length > 0 && (
               <div className="case-actions">
                 {project.actions.map(({ label, href }) => {
@@ -84,6 +91,15 @@ export default async function CaseStudy({ params }: CasePageProps) {
             <ProjectCover kind={project.kind} placement="caseStudy" />
             <figcaption>{project.caption}</figcaption>
           </figure>
+          {project.kind === "clinic" && <ClinicDemo />}
+          {project.videoUrl && (
+            <section className="case-section">
+              <h2>Zapier walkthrough video</h2>
+              <div className="case-prose">
+                <a className="action" href={project.videoUrl}>Watch the Zapier walkthrough</a>
+              </div>
+            </section>
+          )}
           <ProjectStack kind={project.kind} />
           <CaseEvidence kind={project.kind} />
           {project.sections.map((section) => (

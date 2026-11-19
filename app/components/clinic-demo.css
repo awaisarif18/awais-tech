@@ -1,0 +1,201 @@
+.clinic-demo {
+  margin-block-end: clamp(28px, 4vw, 54px);
+  scroll-margin-block-start: 1rem;
+}
+
+.clinic-demo-header { margin-block-end: 1.15rem; }
+.clinic-demo-header h2 { font-size: clamp(1.65rem, 3vw, 2.3rem); line-height: 1.1; }
+.clinic-demo-header p { max-inline-size: 68ch; margin-block-start: .6rem; color: var(--case-text); }
+.clinic-demo-frame { border: 1px solid var(--rule); background: var(--panel); }
+
+.clinic-demo-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .55rem .8rem;
+  padding: .85rem clamp(14px, 2.3vw, 24px);
+  border-block-end: 1px solid var(--rule);
+  font-size: .95rem;
+}
+
+.clinic-demo-toolbar label { font-weight: 700; }
+.clinic-demo-toolbar select {
+  max-inline-size: 100%;
+  padding: .48rem .5rem;
+  border: 1px solid var(--rule);
+  border-radius: 5px;
+  background: var(--ink);
+  color: var(--paper);
+  font: inherit;
+}
+
+.clinic-text-button {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  min-block-size: 37px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--paper);
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: .22em;
+  cursor: pointer;
+}
+
+.clinic-text-button:hover { color: var(--accent); }
+.clinic-text-button:disabled { color: var(--muted); text-decoration: none; cursor: default; }
+.clinic-restart { margin-inline-start: auto; }
+
+.clinic-milestones {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  list-style: none;
+  padding: 0;
+  border-block-end: 1px solid var(--rule);
+}
+
+.clinic-milestones li {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  padding: .72rem clamp(10px, 1.6vw, 24px);
+  color: var(--muted);
+  font-size: .875rem;
+  font-weight: 650;
+  line-height: 1.2;
+}
+
+.clinic-milestones li + li { border-inline-start: 1px solid var(--rule); }
+.clinic-milestones li span {
+  display: grid;
+  flex: none;
+  place-items: center;
+  inline-size: 22px;
+  block-size: 22px;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  font-variant-numeric: tabular-nums;
+}
+
+.clinic-milestones [aria-current] { background: var(--ink); color: var(--paper); }
+.clinic-milestones [aria-current] span { background: var(--accent); border-color: var(--accent); color: var(--ink); }
+.clinic-milestones [data-done="true"] span { border-color: var(--teal); color: var(--teal); }
+
+.clinic-next { padding: clamp(15px, 2.5vw, 25px); background: var(--ink); border-block-end: 1px solid var(--rule); }
+.clinic-next h3 { width: fit-content; font-size: clamp(1.22rem, 2.15vw, 1.58rem); line-height: 1.2; }
+.clinic-inbox-jump { display: none; }
+.clinic-next p { margin-block-start: .28rem; color: var(--case-text); font-size: .98rem; }
+
+.clinic-demo-panels { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); }
+.clinic-calendar, .clinic-inbox { min-inline-size: 0; padding: clamp(14px, 2.35vw, 24px); }
+.clinic-calendar h3, .clinic-inbox h3 { display: flex; align-items: center; gap: .48rem; font-size: 1.25rem; }
+.clinic-calendar h3 svg, .clinic-inbox h3 svg { flex: none; color: var(--muted); }
+.clinic-inbox { border-inline-start: 1px solid var(--rule); }
+
+.clinic-calendar-period {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
+  margin-block: .86rem .55rem;
+  font-size: .96rem;
+}
+
+.clinic-period-focus { display: none; }
+.clinic-calendar-period span { color: var(--muted); font-size: .84rem; }
+.clinic-week { inline-size: 100%; border-collapse: collapse; table-layout: fixed; font-size: .79rem; font-variant-numeric: tabular-nums; }
+.clinic-week :is(th, td) { border: 1px solid var(--rule); padding: .38rem .18rem; text-align: center; }
+.clinic-week thead th { color: var(--muted); font-weight: 550; }
+.clinic-week :is(th, td):first-child { inline-size: 12%; color: var(--muted); font-weight: 550; }
+.clinic-week th strong { color: var(--paper); }
+.clinic-week tbody td { block-size: 43px; }
+.clinic-calendar-day { background: var(--ink); }
+.clinic-calendar-event, .clinic-calendar-slot { display: block; padding: .3rem .12rem; border-radius: 4px; overflow-wrap: anywhere; line-height: 1.14; }
+.clinic-calendar-event { background: var(--panel); color: var(--muted); }
+.clinic-calendar-slot { border: 1px solid currentColor; color: var(--accent); font-weight: 750; }
+.clinic-calendar-slot:is([data-phase="accepted"], [data-phase="booked"]) { color: var(--teal); }
+.clinic-calendar-slot[data-phase="booked"] { background: var(--teal); border-color: var(--teal); color: var(--ink); }
+
+.clinic-calendar-detail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: .6rem 1rem;
+  margin-block-start: .85rem;
+}
+
+.clinic-calendar-detail p { color: var(--case-text); font-size: .91rem; }
+.clinic-calendar-detail strong { color: var(--paper); font-size: 1rem; }
+.clinic-demo .action { min-block-size: 42px; padding: .5rem .82rem; font-family: inherit; cursor: pointer; }
+.clinic-inbox-empty { margin-block-start: .85rem; color: var(--muted); font-size: .98rem; }
+
+.clinic-message {
+  margin-block-start: .85rem;
+  padding: .85rem clamp(12px, 1.5vw, 16px);
+  border-block: 1px solid var(--rule);
+  background: var(--ink);
+}
+
+.clinic-message h4 { margin: .08rem 0 .38rem; font-size: 1.15rem; line-height: 1.2; }
+.clinic-message p { color: var(--case-text); font-size: .93rem; line-height: 1.45; }
+.clinic-message .clinic-message-recipient { color: var(--muted); font-size: .83rem; }
+.clinic-message .clinic-message-outcome { margin-block-start: .55rem; color: var(--teal); font-weight: 650; }
+.clinic-offer-meta { display: flex; align-items: center; gap: .35rem; margin-block-start: .62rem; font-variant-numeric: tabular-nums; }
+.clinic-replies { display: flex; flex-wrap: wrap; gap: .45rem; margin-block-start: .72rem; }
+.clinic-message .clinic-text-button { margin-block-start: .25rem; font-size: .88rem; }
+
+.clinic-mail-list { display: grid; gap: .2rem; max-block-size: 8.4rem; overflow-y: auto; margin: .6rem 0 0; padding: 0 .35rem; list-style: none; }
+.clinic-mail-list button {
+  display: flex;
+  align-items: center;
+  gap: .45rem;
+  inline-size: 100%;
+  min-block-size: 42px;
+  padding: .2rem .45rem;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: .86rem;
+  line-height: 1.2;
+  text-align: start;
+  cursor: pointer;
+}
+
+.clinic-mail-list button svg { flex: none; }
+.clinic-mail-list button:hover, .clinic-mail-list button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.clinic-mail-list button:focus-visible { outline-offset: -2px; }
+
+.clinic-demo-log { padding: clamp(14px, 2.35vw, 24px); border-block-start: 1px solid var(--rule); }
+.clinic-demo-log h3 { font-size: 1.18rem; }
+.clinic-demo-log p, .clinic-demo-log ol { margin-block-start: .4rem; color: var(--case-text); font-size: .94rem; }
+.clinic-demo-log ol { padding: 0; list-style: none; }
+.clinic-demo-log li { display: grid; grid-template-columns: 124px minmax(0, 1fr); gap: 0 .55rem; padding-block: .25rem; }
+.clinic-demo-log li strong { color: var(--paper); }
+.clinic-demo-log details { margin-block-start: .68rem; font-size: .94rem; }
+.clinic-demo-log summary { inline-size: fit-content; padding-block: .45rem; color: var(--muted); cursor: pointer; }
+.clinic-demo-log summary:hover { color: var(--paper); }
+.clinic-demo-log .clinic-waitlist li { grid-template-columns: 154px minmax(0, 1fr); }
+
+@media (max-width: 720px) {
+  .clinic-demo-panels { grid-template-columns: 1fr; }
+  .clinic-inbox-jump { display: inline-block; margin-block-start: .4rem; padding-block: .35rem; color: var(--teal); font-size: .95rem; }
+  .clinic-inbox { scroll-margin-block-start: 1rem; }
+  .clinic-inbox { border-inline-start: 0; border-block-start: 1px solid var(--rule); }
+}
+
+@media (max-width: 480px) {
+  .clinic-demo-toolbar { display: grid; grid-template-columns: minmax(0, 1fr) auto; }
+  .clinic-demo-toolbar select { grid-column: 1 / -1; grid-row: 2; }
+  .clinic-restart { grid-column: 2; grid-row: 1; }
+  .clinic-period-week { display: none; }
+  .clinic-period-focus { display: inline; }
+  .clinic-milestones li { flex-direction: column; align-items: flex-start; gap: .35rem; }
+  .clinic-week :is(th, td):is(:nth-child(2), :last-child) { display: none; }
+  .clinic-week :is(th, td):first-child { inline-size: 17%; }
+  .clinic-demo-log li, .clinic-demo-log .clinic-waitlist li { grid-template-columns: 1fr; }
+  .clinic-demo-log li + li { border-block-start: 1px solid var(--rule); }
+}

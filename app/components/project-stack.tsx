@@ -1,9 +1,18 @@
-import { CandlestickChart, Database } from "lucide-react";
+import { CandlestickChart, Database, FileSpreadsheet, Mail, Zap } from "lucide-react";
 import Image from "next/image";
 import type { ProjectKind } from "../content/projects";
 import { FeatureBlockAnimatedCard } from "./aceternity/feature-block-animated-card";
 
 const projectStacks = {
+  clinic: {
+    tools: [
+      ["Zapier", "zap"],
+      ["Google Sheets", "spreadsheet"],
+      ["Gmail", "mail"],
+      ["Next.js", "nextdotjs"],
+    ],
+    skills: ["Waitlist matching", "Conditional routing", "Offer expiry", "Reception handoff"],
+  },
   survey: {
     tools: [
       ["Streamlit", "streamlit"],
@@ -61,6 +70,9 @@ export function ProjectStack({ kind }: { kind: ProjectKind }) {
 }
 
 function TechnologyIcon({ icon }: { icon: string }) {
+  if (icon === "zap") return <Zap aria-hidden="true" />;
+  if (icon === "spreadsheet") return <FileSpreadsheet aria-hidden="true" />;
+  if (icon === "mail") return <Mail aria-hidden="true" />;
   if (icon === "database") return <Database aria-hidden="true" />;
   if (icon === "candlestick") return <CandlestickChart aria-hidden="true" />;
 

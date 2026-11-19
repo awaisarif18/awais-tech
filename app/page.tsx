@@ -79,19 +79,21 @@ export default function Home() {
         <section className="section-shell work" id="projects" aria-labelledby="work-title">
           <h2 id="work-title" className="section-title">Selected Projects</h2>
           {projects.map((project) => (
-            <article key={project.slug} className={`spread spread--${project.kind}`}>
-              <h3>{project.title}</h3>
+            <article key={project.slug} className="spread">
+              <div className="spread-copy">
+                <h3>{project.title}</h3>
+                <div className="spread-notes">
+                  <p>{project.summary}</p>
+                  <p className="project-proof">{project.proof}</p>
+                  <p className="project-context">{project.context}</p>
+                </div>
+              </div>
               <ProjectCoverLink
                 href={`/projects/${project.slug}`}
                 title={project.title}
               >
                 <ProjectCover kind={project.kind} />
               </ProjectCoverLink>
-              <div className="spread-notes">
-                <p>{project.summary}</p>
-                <p className="project-proof">{project.proof}</p>
-                <p className="project-context">{project.context}</p>
-              </div>
             </article>
           ))}
         </section>

@@ -1,4 +1,4 @@
-export type ProjectKind = "survey" | "travel" | "build" | "trade";
+export type ProjectKind = "survey" | "travel" | "build" | "trade" | "clinic";
 
 export type CaseText = string | (string | { strong: string; tone?: "result" })[];
 
@@ -18,6 +18,7 @@ type Project = {
   search: { title: string; description: string };
   caption: string;
   status?: string;
+  videoUrl?: string | null;
   actions: { label: string; href: string }[];
   sections: { title: string; body: CaseParagraph[] }[];
   booking: { title: string; description: string };
@@ -109,6 +110,64 @@ export const projects: Project[] = [
       "title": "Have feedback your team still tags by hand?",
       "description": "Bring a sample survey or a set of comments. We can talk through which decisions to automate and which should stay with your reviewers."
     }
+  },
+  {
+    slug: "clinic-waitlist-automation",
+    kind: "clinic",
+    title: "Clinic Waitlist Automation",
+    summary: "Offer a cancelled appointment to the next eligible patient on the waitlist.",
+    proof: "Five-Zap workflow design",
+    context: "Fictional clinic data · Interactive walkthrough",
+    premise: "When a patient cancels, give the next person on the waitlist a chance to take the appointment.",
+    search: {
+      title: "Clinic Waitlist Automation Case Study",
+      description: "Explore a five-Zap clinic waitlist design and try an interactive demo of cancellations, offers, expiry, and rebooking.",
+    },
+    caption: "The calendar preview shows the 2:30 p.m. slot confirmed for the next available patient.",
+    videoUrl: null,
+    actions: [],
+    sections: [
+      {
+        title: "The problem",
+        body: [
+          {
+            text: "A last-minute cancellation leaves reception with an empty slot and a list of people to call. Staff have to check who wants that appointment type, who can make the time and when to move on if someone is silent.",
+          },
+        ],
+      },
+      {
+        title: "What I built",
+        body: [
+          {
+            text: "Three Zaps handle matching, replies, and offer expiry. I designed two more to connect the waitlist to the clinic calendar. The interactive walkthrough shows how all five would work together.",
+          },
+          {
+            heading: "Detect Calendar Cancellation (planned)",
+            text: "A cancellation in the clinic calendar opens the matching slot in Google Sheets. Reception can then see that the time is available for an offer.",
+          },
+          {
+            heading: "Send Offer",
+            text: "A ready slot in Google Sheets starts the workflow. Zapier checks who opted in, needs that appointment type and is free for the full slot. It emails the first eligible patient in join order and holds the slot for five minutes.",
+          },
+          {
+            heading: "Waitlist - Process Reply",
+            text: "The patient uses the offer link to accept or decline. An acceptance records the patient’s reply and emails reception. A decline reopens the slot so the next eligible person gets an offer.",
+          },
+          {
+            heading: "Waitlist - Expire Offer",
+            text: "When the deadline passes, the Zap checks that the same offer is still active before it reopens the slot. The next patient gets a fresh offer. If the list runs out, reception gets a review email.",
+          },
+          {
+            heading: "Book Accepted Appointment (planned)",
+            text: "An acceptance triggers a fresh availability check. If the slot is still free, the Zap creates the calendar booking and sends a confirmation. If another booking took the slot, reception gets the case to review.",
+          },
+        ],
+      },
+    ],
+    booking: {
+      title: "Still filling cancellations by hand?",
+      description: "Bring your booking and waitlist process. We can map what can be automated and when a slot needs reception’s attention.",
+    },
   },
   {
     "slug": "pakistan-north-travel-ai",
@@ -367,5 +426,5 @@ export const projects: Project[] = [
       "title": "Building a system that has to react in real time?",
       "description": "We can start by mapping what must happen when an event arrives, and what the system should do when part of the connection drops."
     }
-  }
+  },
 ];

@@ -4,6 +4,14 @@ import { CardContainer } from "./aceternity/3d-card";
 export { ProjectCoverLink } from "./project-cover-link";
 
 export const covers = {
+  clinic: {
+    src: "/images/clinic-waitlist-calendar.webp",
+    alt: "Sample weekly clinic calendar with Wednesday’s 2:30 p.m. appointment rebooked.",
+    kicker: "Clinic waitlist",
+    statement: "The 2:30 slot just opened.",
+    result: "The next patient gets an offer.",
+    note: "Calendar, waitlist and patient replies.",
+  },
   survey: {
     src: "/images/survey-theme-analysis-cover.webp",
     alt: "Colour-coded paper slips branch into separate piles marked with checks and crosses.",
@@ -39,13 +47,9 @@ export const covers = {
 };
 
 const coverSizes = {
-  gallery: {
-    survey: "(max-width: 420px) calc(74vw - 36px), (max-width: 800px) 60vw, 36vw",
-    build: "(max-width: 420px) calc(74vw - 36px), (max-width: 800px) 60vw, 36vw",
-    travel: "(max-width: 800px) 52vw, 40vw",
-    trade: "(max-width: 420px) calc(74vw - 36px), (max-width: 800px) 60vw, 40vw",
-  },
+  gallery: "(max-width: 420px) calc(74vw - 36px), (max-width: 800px) 60vw, 36vw",
   caseStudy: {
+    clinic: "(max-width: 420px) calc(74vw - 36px), (min-width: 1140px) 684px, 61vw",
     survey: "(max-width: 420px) calc(74vw - 36px), (min-width: 1140px) 684px, 61vw",
     build: "(max-width: 420px) calc(74vw - 36px), (min-width: 1140px) 684px, 61vw",
     travel: "(min-width: 1140px) 530px, calc(52vw - 25px)",
@@ -54,20 +58,45 @@ const coverSizes = {
 };
 
 export function ProjectCover({ kind, placement = "gallery" }: { kind: ProjectKind; placement?: "gallery" | "caseStudy" }) {
-  const { src, alt, kicker, statement, result, note } = covers[kind];
-  const travel = kind === "travel";
   const isLeadImage = placement === "caseStudy";
 
   return (
-    <div className={`cover-art cover-art--${kind}${travel ? "" : " cover-art--illustrated"}`}>
+    <CoverArtwork
+      artwork={covers[kind]}
+      className={`cover-art--${kind}${kind === "travel" ? "" : " cover-art--illustrated"}`}
+      sizes={isLeadImage ? coverSizes.caseStudy[kind] : coverSizes.gallery}
+      eager={isLeadImage}
+    />
+  );
+}
+
+type CoverContent = {
+  src: string;
+  alt: string;
+  kicker: string;
+  statement: string;
+  result: string;
+  note?: string;
+};
+
+export function CoverArtwork({ artwork, className, sizes, eager = false }: {
+  artwork: CoverContent;
+  className: string;
+  sizes: string;
+  eager?: boolean;
+}) {
+  const { src, alt, kicker, statement, result, note } = artwork;
+
+  return (
+    <div className={`cover-art ${className}`}>
       <CardContainer className="cover-media">
         <Image
           src={src}
           alt={alt}
           fill
-          sizes={coverSizes[placement][kind]}
-          loading={isLeadImage ? "eager" : "lazy"}
-          fetchPriority={isLeadImage ? "high" : undefined}
+          sizes={sizes}
+          loading={eager ? "eager" : "lazy"}
+          fetchPriority={eager ? "high" : undefined}
         />
       </CardContainer>
       <div className="cover-copy">
@@ -75,7 +104,7 @@ export function ProjectCover({ kind, placement = "gallery" }: { kind: ProjectKin
         <p className="cover-statement">{statement}</p>
         <div className="cover-result">
           <p>{result}</p>
-          <p className="cover-note">{note}</p>
+          {note && <p className="cover-note">{note}</p>}
         </div>
       </div>
     </div>
