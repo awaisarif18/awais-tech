@@ -142,7 +142,7 @@ export const projects: Project[] = [
             text: "Three Zaps handle matching, replies, and offer expiry. I designed two more to connect the waitlist to the clinic calendar. The interactive walkthrough shows how all five would work together.",
           },
           {
-            heading: "Detect Calendar Cancellation (planned)",
+            heading: "Detect Calendar Cancellation",
             text: "A cancellation in the clinic calendar opens the matching slot in Google Sheets. Reception can then see that the time is available for an offer.",
           },
           {
@@ -158,7 +158,7 @@ export const projects: Project[] = [
             text: "When the deadline passes, the Zap checks that the same offer is still active before it reopens the slot. The next patient gets a fresh offer. If the list runs out, reception gets a review email.",
           },
           {
-            heading: "Book Accepted Appointment (planned)",
+            heading: "Book Accepted Appointment",
             text: "An acceptance triggers a fresh availability check. If the slot is still free, the Zap creates the calendar booking and sends a confirmation. If another booking took the slot, reception gets the case to review.",
           },
         ],
