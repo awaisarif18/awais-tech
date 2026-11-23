@@ -17,6 +17,15 @@ type Channel = {
   samples: Sample[];
 };
 
+export const youtubeInsights = {
+  subscribers: "611",
+  lifetimeViews: "36,771",
+  overviewViews: "36.7K",
+  watchHours: "995.1",
+  pakistanViews: "44.8%",
+  pakistanWatchTime: "52.5%",
+};
+
 export const channels: Channel[] = [
   {
     slug: "m-awais-arif",
@@ -72,7 +81,7 @@ export const channels: Channel[] = [
     slug: "youtube",
     label: "Long-Form Video",
     handle: "@MuhammadAwaisArif",
-    metric: "611 subscribers",
+    metric: `${youtubeInsights.subscribers} subscribers · ${youtubeInsights.overviewViews} lifetime views`,
     platform: "YouTube",
     url: "https://www.youtube.com/muhammadawaisarif",
     description: "Travel vlogs from Kashmir and Mushkpuri Top, plus a short film from IAC Film Fest 2023.",

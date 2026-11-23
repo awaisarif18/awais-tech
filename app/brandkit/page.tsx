@@ -125,6 +125,9 @@ export default function BrandKit() {
                 <span className={styles.label}>{label} · {platform}</span>
                 <Link href={`/brandkit/${slug}`} className={styles.channelLink}>{handle}</Link>
                 <strong>{metric}</strong>
+                {platform === "YouTube" && (
+                  <Link className={styles.packageLink} href={`/brandkit/${slug}#channel-samples-title`}>Watch the Films <ArrowUpRight size={16} aria-hidden="true" /></Link>
+                )}
                 <a className={styles.packageLink} href={url} aria-label={`Visit ${handle} on ${platform}`}>Visit {platform} <ArrowUpRight size={16} aria-hidden="true" /></a>
               </li>
             ))}

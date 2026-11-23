@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
 import { Footer } from "../../components/site";
-import { channels } from "../channels";
+import { channels, youtubeInsights } from "../channels";
 import styles from "../brandkit.module.css";
 
 type ChannelPageProps = { params: Promise<{ channel: string }> };
@@ -39,6 +39,18 @@ export default async function ChannelPage({ params }: ChannelPageProps) {
           <p>{channel.description}</p>
           <a className="action action--primary" href={channel.url}>Visit {channel.platform} <ArrowUpRight size={17} aria-hidden="true" /></a>
         </header>
+        {channel.platform === "YouTube" && (
+          <section className={styles.analytics} aria-labelledby="youtube-analytics-title">
+            <h2 id="youtube-analytics-title">YouTube Analytics</h2>
+            <p className={styles.note}>YouTube Studio · <time dateTime="2019-07-04">4 July 2019</time> to <time dateTime="2026-11-22">22 November 2026</time></p>
+            <dl className={styles.audience}>
+              <div><dt>Lifetime views</dt><dd>{youtubeInsights.lifetimeViews}</dd></div>
+              <div><dt>Hours watched</dt><dd>{youtubeInsights.watchHours}</dd></div>
+              <div><dt>Subscribers</dt><dd>{youtubeInsights.subscribers}</dd></div>
+            </dl>
+            <p className={styles.note}>Pakistan accounted for <strong>{youtubeInsights.pakistanViews} of views</strong> and <strong>{youtubeInsights.pakistanWatchTime} of watch time</strong> over this period.</p>
+          </section>
+        )}
         {channel.samples.length > 0 && (
           <section className={styles.section} aria-labelledby="channel-samples-title">
             <h2 className="section-title" id="channel-samples-title">Selected Work</h2>
