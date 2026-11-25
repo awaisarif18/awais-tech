@@ -2,6 +2,7 @@ import Link from "next/link";
 import { appointmentUrl, sectionLinks, socialLinks } from "../content/profile";
 import { LinkPreview } from "./aceternity/link-preview";
 import { NoiseBackground } from "./aceternity/noise-background";
+import { AnalyticsPreferences } from "./analytics-preferences";
 import { BrandLogo } from "./brand-logo";
 
 export function BookingLink() {
@@ -25,6 +26,7 @@ export function Footer() {
           {socialLinks.map(({ label, href }) => <LinkPreview key={label} url={href} title={label === "Email" ? "Email Awais" : `Awais on ${label}`}>{label}</LinkPreview>)}
         </nav>
       </div>
+      <AnalyticsPreferences />
     </footer>
   );
 }

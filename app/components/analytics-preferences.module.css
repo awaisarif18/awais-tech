@@ -1,0 +1,43 @@
+.settings {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 44px;
+  padding: 0 .35rem;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: .875rem;
+  text-decoration: underline;
+  text-underline-offset: .23em;
+  cursor: pointer;
+}
+
+.notice {
+  position: fixed;
+  z-index: 30;
+  inset-inline-end: max(1rem, env(safe-area-inset-right));
+  inset-block-end: max(1rem, env(safe-area-inset-bottom));
+  inline-size: min(21rem, calc(100% - 2rem));
+  padding: 1rem;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: var(--ink);
+  text-align: start;
+  font-size: .9375rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-block-start: .75rem;
+}
+
+.actions button {
+  flex: 1;
+  min-block-size: 44px;
+  padding: .5rem .6rem;
+  font-family: inherit;
+  cursor: pointer;
+}
